@@ -1,19 +1,31 @@
 {
   "name": "face-recognition",
-  "version": "0.0.1",
-  "description": "A basic face recognition app.",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aris1009/face-recognition.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "Aris Konstantoulas",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aris1009/face-recognition/issues"
-  },
-  "homepage": "https://github.com/aris1009/face-recognition#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
