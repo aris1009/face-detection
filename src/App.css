@@ -6,6 +6,37 @@
 }
 
 body {
+  background: linear-gradient(45deg, rgba(147, 206, 222, 1) 0%, rgba(117, 189, 209, 1) 41%, rgba(73, 165, 191, 1) 100%);
   font-family: 'PT Serif', serif;
   font-size: 20px;
+  user-select: none;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logo:hover {
+  transition: 1.5s;
+}
+
+.image-form {
+  position: fixed;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
