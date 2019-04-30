@@ -6,7 +6,7 @@ export default class NavigationBar extends Component {
 	render() {
 		return (
 			<div className="navigation-bar">
-				<Button innerHTML="Sign Out"></Button>
+				<Button classNamesToChild="mt2 mr3 pa3 pl4 pr4 dim bb pointer">Sign Out</Button>
 			</div>
 		)
 	}
