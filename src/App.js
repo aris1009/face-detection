@@ -2,8 +2,8 @@ import React from 'react';
 import Particles from 'react-particles-js';
 import NavigationBar from './Components/NavigationBar/NavigationBar';
 import Logo from './Components/Logo/Logo';
+import Rank from './Components/Rank/Rank';
 import ImageForm from './Components/ImageForm/ImageForm';
-import './Components/Logo/Logo.css';
 import './App.css';
 
 const particleParams = {
@@ -27,7 +27,7 @@ function App() {
       <Particles className="particles" params={particleParams} />
       <NavigationBar />
       <Logo />
-      {/* TODO <Rank /> */}
+      <Rank />
       <ImageForm />
       {/* <FaceDetectSquare/> */}
     </div>);

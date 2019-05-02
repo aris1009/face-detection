@@ -4,9 +4,12 @@ import Button from '../Button';
 export default class ImageForm extends Component {
   render() {
     return (
-      <div className="image-form w-40 tc">
-        <input type="url" className="w-75" style={{height:"2.5em"}}/>
-        <Button classNamesToChild="w-20 pa1 dim bb pointer">Upload</Button>
+      <div className="image-form">
+        <input type="url" name="imageUrl" placeholder="Paste an image url"
+          className="w-70" style={{ height: "2.5em" }} />
+        <Button classNamesToChild="pa1 tc" style={{ width: "max-content" }}>
+          Upload
+        </Button>
       </div>
     )
   }
