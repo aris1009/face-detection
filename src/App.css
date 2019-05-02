@@ -15,7 +15,8 @@ body {
 div.App {
   display: grid;
   grid-template-columns: 20% auto 20%;
-  grid-template-rows: 10% 25% 25% auto;
+  /* grid-template-rows: 10% 25% 25% auto; */
+  justify-items: center;
 }
 
 .particles {
@@ -42,7 +43,6 @@ div.App {
 @media screen and (max-width: 600px) {
   .logo {
     font-size: 2vw;
-    margin-left: 10vw;
   }
 }
 
@@ -50,11 +50,11 @@ div.App {
   white-space: nowrap;
   grid-column: 1 / 1;
   grid-row: 1 / 1;
-  justify-self: center;
+  align-self: center;
 }
 
 .logo>span {
-  padding: 10px;
+  padding: 0.6em;
 }
 
 .logo>span:hover {
@@ -71,6 +71,7 @@ div.App {
   display: flex;
   align-items: baseline;
   justify-content: space-evenly;
+  width: 100%;
   grid-column: 2 / span 1;
   grid-row: 3 / 3;
 }
