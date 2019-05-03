@@ -1,33 +1,77 @@
-.App {
+@font-face {
+  font-family: 'PT Serif';
+  src: url('Fonts/PT_Serif/PT_Serif-Web-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background: linear-gradient(45deg, rgba(147, 206, 222, 1) 0%, rgba(117, 189, 209, 1) 41%, rgba(73, 165, 191, 1) 100%);
+  font-family: 'PT Serif', serif;
+  font-size: 1.2em;
+  user-select: none;
+}
+
+div.App {
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+  /* grid-template-rows: 10% 25% 25% auto; */
+  justify-items: center;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.navigation-bar {
+  user-select: none;
+  text-align: right;
+  grid-column: 3 / 3;
+  grid-row: 1 / 1;
+}
+
+.navigation-bar>div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    font-size: 2vw;
+  }
+}
+
+.logo {
+  white-space: nowrap;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  align-self: center;
+}
+
+.logo>span {
+  padding: 0.6em;
+}
+
+.logo>span:hover {
+  transition: 1.5s;
+}
+
+.rank-form {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.image-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: baseline;
+  justify-content: space-evenly;
+  width: 100%;
+  grid-column: 2 / span 1;
+  grid-row: 3 / 3;
 }
