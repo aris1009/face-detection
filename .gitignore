@@ -24,3 +24,4 @@ yarn-error.log*
 
 #custom
 nohup.out
+src/config.json
