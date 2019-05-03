@@ -6,8 +6,12 @@ export default class ImageForm extends Component {
     return (
       <div className="image-form">
         <input type="url" name="imageUrl" placeholder="Paste an image url"
-          className="w-70" style={{ height: "2.5em" }} />
-        <Button classNamesToChild="pa1 tc" style={{ width: "max-content" }}>
+          className="w-70" style={{ height: "2.5em" }}
+          onChange={this.props.onInputChange} />
+        <Button
+          classNamesToChild="pa1 tc"
+          style={{ width: "max-content" }}
+          onButtonSubmit={this.props.onButtonSubmit}>
           Upload
         </Button>
       </div>
