@@ -5,8 +5,14 @@
   font-style: normal;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  background: linear-gradient(45deg, rgba(147, 206, 222, 1) 0%, rgba(117, 189, 209, 1) 41%, rgba(73, 165, 191, 1) 100%);
+  /* background: -webkit-linear-gradient(top left, #6BD8EC, #579AF4);
+  background: -moz-linear-gradient(top left, #6BD8EC, #579AF4); */
+  background: linear-gradient(#6BD8EC, #579AF4);
   font-family: 'PT Serif', serif;
   font-size: 1.2em;
   user-select: none;
