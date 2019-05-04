@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-export default function FaceDetectSquare() {
+export default function FaceDetectSquare({ imgURL }) {
   return (
-    <div>
-      
+    <div className="image-outer">
+      <img className="image-inner" src={imgURL}>
+      </img>
     </div>
   )
 }
