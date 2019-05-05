@@ -33,7 +33,8 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      imgURL: ''
+      imgURL: '',
+      boundingBoxRegions: []
     }
   }
 
@@ -50,14 +51,13 @@ class App extends Component {
 
     clarifaiClient.models
       .predict(clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then(
-        function (response) {
-          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
+      .then(response => this.boundBoxCoordsCalculator(response))
+      .catch(err => console.log(err));
+  }
+
+  boundBoxCoordsCalculator = data => {
+    let regions = data.outputs[0].data.regions;
+    this.setState({ boundingBoxRegions: regions });
   }
 
   render() {
@@ -71,7 +71,9 @@ class App extends Component {
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
           onInputFocus={this.onInputFocus} />
-        <FaceDetectSquare imgURL={this.state.imgURL} />
+        <FaceDetectSquare
+          imgURL={this.state.imgURL}
+          boundingBoxRegions={this.state.boundingBoxRegions} />
       </div>);
   }
 }
