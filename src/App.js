@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import NavigationBar from './Components/NavigationBar/NavigationBar';
+import Signin from './Components/Route/Signin';
+import Register from './Components/Route/Register';
 import Logo from './Components/Logo/Logo';
 import Rank from './Components/Rank/Rank';
 import ImageForm from './Components/ImageForm/ImageForm';
@@ -13,46 +15,49 @@ const clarifaiClient = new clarifai.App({
   apiKey: conf.clarifai_api_key
 });
 
-const particleParams = {
-  "particles": {
-    "number": {
-      "value": 40,
-      density: {
-        enable: true,
-        value_area: 400
-      }
-    },
-    "size": {
-      "value": 2
-    }
-  }
-}
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
       input: '',
       imgURL: '',
-      boundingBoxRegions: []
+      boundingBoxRegions: [],
+      route: 'signin',
+      isSignedIn: false
     }
   }
 
-  onInputChange = (e) => {
+
+  onInputChange = e => {
     this.setState({ input: e.target.value });
   }
 
-  onInputFocus = (e) => {
+  onInputFocus = e => {
     e.target.select();
   }
 
-  onButtonSubmit = () => {
-    this.setState({ imgURL: this.state.input });
+  onButtonClick = (data) => {
+    switch (data) {
+      case String(data.match(/action_.*/)):
+        if (data === 'action_clarifai') {
+          this.setState({ imgURL: this.state.input });
 
-    clarifaiClient.models
-      .predict(clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then(response => this.boundBoxCoordsCalculator(response))
-      .catch(err => console.log(err));
+          clarifaiClient.models
+            .predict(clarifai.FACE_DETECT_MODEL, this.state.input)
+            .then(response => this.boundBoxCoordsCalculator(response))
+            .catch(err => console.log(err));
+        }
+        break;
+      case String(data.match(/route_.*/)):
+        let route = data.replace('route_', '');
+        if (route === 'home') this.setState({ isSignedIn: true });
+        if (route === 'signin') this.setState({ isSignedIn: false });
+        this.setState({ route });
+        break;
+      default:
+        break;
+
+    }
   }
 
   boundBoxCoordsCalculator = data => {
@@ -61,19 +66,35 @@ class App extends Component {
   }
 
   render() {
+    const { imgURL, boundingBoxRegions, route, isSignedIn } = this.state;
     return (
       <div className="App">
-        <Particles className="particles" params={particleParams} />
-        <NavigationBar />
+        <Particles className="particles" params={conf.particlesParams} />
+        <NavigationBar onButtonClick={this.onButtonClick} isSignedIn={isSignedIn} />
         <Logo />
-        <Rank />
-        <ImageForm
-          onInputChange={this.onInputChange}
-          onButtonSubmit={this.onButtonSubmit}
-          onInputFocus={this.onInputFocus} />
-        <FaceDetectSquare
-          imgURL={this.state.imgURL}
-          boundingBoxRegions={this.state.boundingBoxRegions} />
+        {
+          (() => {
+            switch (route) {
+              case 'home':
+                return (<>
+                  <Rank />
+                  <ImageForm
+                    onInputChange={this.onInputChange}
+                    onButtonClick={this.onButtonClick}
+                    onInputFocus={this.onInputFocus} />
+                  <FaceDetectSquare
+                    imgURL={imgURL}
+                    boundingBoxRegions={boundingBoxRegions} />
+                </>)
+              case 'signin':
+                return <Signin onButtonClick={this.onButtonClick} />
+              case 'register':
+                return <Register onButtonClick={this.onButtonClick} />
+              default:
+                return null;
+            }
+          })()
+        }
       </div>);
   }
 }

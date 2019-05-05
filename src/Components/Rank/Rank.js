@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Rank extends Component {
   render() {
     return (
-      <div className="rank-form pa4">
+      <div className="main-view pa4">
         Hello, Aris.<br />
         You are &nbsp;
         <span style={{ fontSize: "1.2em" }}>#</span>

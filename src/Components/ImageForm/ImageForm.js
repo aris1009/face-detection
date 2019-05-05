@@ -10,9 +10,9 @@ export default class ImageForm extends Component {
           onChange={this.props.onInputChange}
           onFocus={this.props.onInputFocus} />
         <Button
-          classNamesToChild="pa1 tc"
-          style={{ width: "max-content" }}
-          onButtonSubmit={this.props.onButtonSubmit}>
+          classNamesToChild="pa2 tc"
+          onButtonClick={this.props.onButtonClick}
+          functionality="action_clarifai">
           Upload
         </Button>
       </div>
