@@ -63,12 +63,6 @@ div.App {
   transition: 1.5s;
 }
 
-.rank-form {
-  grid-column: 2 / 2;
-  grid-row: 2 / 2;
-  text-align: center;
-}
-
 .image-form {
   display: flex;
   align-items: baseline;
@@ -103,4 +97,10 @@ div.App {
 
 .bounding-box:hover {
   border-color: #6BD8EC;
+}
+
+.main-view {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  text-align: center;
 }
