@@ -33,25 +33,31 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imgURL: '',
+      boundingBoxRegions: []
     }
   }
 
   onInputChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
+    this.setState({ input: e.target.value });
+  }
+
+  onInputFocus = (e) => {
+    e.target.select();
   }
 
   onButtonSubmit = () => {
+    this.setState({ imgURL: this.state.input });
+
     clarifaiClient.models
-      .predict("https://samples.clarifai.com/face-det.jpg")
-      .then(
-        function (response) {
-          console.log(response);
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
+      .predict(clarifai.FACE_DETECT_MODEL, this.state.input)
+      .then(response => this.boundBoxCoordsCalculator(response))
+      .catch(err => console.log(err));
+  }
+
+  boundBoxCoordsCalculator = data => {
+    let regions = data.outputs[0].data.regions;
+    this.setState({ boundingBoxRegions: regions });
   }
 
   render() {
@@ -63,8 +69,11 @@ class App extends Component {
         <Rank />
         <ImageForm
           onInputChange={this.onInputChange}
-          onButtonSubmit={this.onButtonSubmit} />
-        <FaceDetectSquare />
+          onButtonSubmit={this.onButtonSubmit}
+          onInputFocus={this.onInputFocus} />
+        <FaceDetectSquare
+          imgURL={this.state.imgURL}
+          boundingBoxRegions={this.state.boundingBoxRegions} />
       </div>);
   }
 }
